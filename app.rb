@@ -22,6 +22,7 @@ Cuba.define do
       rescue => e
         @error = e.message
         @repo = repo || 'undefined-random-repo'
+        @example = example_gitten
         res.write partial('gittens')
       end
     end
