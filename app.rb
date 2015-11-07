@@ -9,7 +9,7 @@ Cuba.define do
     on 'random-gitten' do
       begin
         repo = GITHUB.search_repos("forks:<=#{rand(100)}")[:items][rand(30)][:full_name]
-        res.redirect 'gitten/' + repo
+        res.redirect '/gitten/' + repo
       rescue => e
         @error = e.message
         @repo = repo || 'undefined-random-repo'
@@ -33,12 +33,13 @@ Cuba.define do
     end
 
     on 'ohai' do
-      @debug = Gittenizer.new('rails/rails', GITHUB).gitten
+      example_repo = ['thoughtbot/paperclip', 'refile/refile', 'carrierwaveuploader/carrierwave'].sample
+      @example_gitten = Gittenizer.new(example_repo, GITHUB).gitten
       res.write partial('gittens')
     end
 
-    on root do
-      res.redirect 'ohai'
+    on true do
+      res.redirect '/ohai'
     end
   end
 end

@@ -4,43 +4,23 @@
 %html
   / <![endif]
   %head
-    %link{href: 'http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css', media: 'all', rel: 'stylesheet', type: 'text/css'}
+    = Haml::Engine.new(File.read('./views/head.haml')).render
     %meta{charset: 'UTF-8'}
       %meta{content: 'width=device-width', name: 'viewport'}
         %title= "Gitten #{@gitten[:name]}"
   %body
     .container
-      %h1
-        %a{href: "https://github.com/#{@gitten[:name]}", target: '_blank'}= @gitten[:name]
+      %h1= Haml::Engine.new(File.read('./views/gitten_github_link.haml')).render Object.new, gitten: @gitten
       %hr
-      %img{src: "/badge/#{@gitten[:name]}"}
+      = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @gitten
       -# %p= "[![Gittens](http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]})](http://gittens.r15.railsrumble.com/gitten/#{@gitten[:name]})"
       %hr
-      %p
-        age:
-        - ['newborn', 'kitten', 'teen', 'adult', 'senior'].each do |m|
-          %span{class: "label label-#{m == @gitten[:maturity] ? 'primary' : 'default'}"}= m
-      %p
-        size:
-        - ['skinny', 'chubby', 'fat'].each do |m|
-          %span{class: "label label-#{m == @gitten[:size] ? 'primary' : 'default'}"}= m
-      %p
-        contributor diversity:
-        - ['black', 'bicolor', 'calico', 'tabby', 'nyan', 'amazing technicolor'].each do |m|
-          %span{class: "label label-#{m == @gitten[:contributor_diversity] ? 'primary' : 'default'}"}= m
-      %p
-        hunger:
-        - ['full', 'satiated', 'hungry', 'very hungry', 'near starving', 'starving'].each do |m|
-          %span{class: "label label-#{m == @gitten[:hunger] ? 'primary' : 'default'}"}= m
-      %p
-        activity:
-        - ['hibernating', 'comatose', 'sleepy', 'calm', 'alert', 'playful', 'hyperactive'].each do |m|
-          %span{class: "label label-#{m == @gitten[:activity] ? 'primary' : 'default'}"}= m
-      %p
-        amusement:
-        - ['slightly amused', 'amused', 'cheshire'].each do |m|
-          %span{class: "label label-#{m == @gitten[:amusement] ? 'primary' : 'default'}"}= m
+      .row
+        .col-md-2= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
+        .col-md-6= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @gitten
+        .col-md-4
+          %p= Haml::Engine.new(File.read('./views/search_form.haml')).render
+          %p= Haml::Engine.new(File.read('./views/random_gitten_button.haml')).render
+      %hr
 
-      %hr
-      %hr
-      %a{href: '/random-gitten', class: 'btn btn-primary'} Give me a random gitten!
+    = Haml::Engine.new(File.read('./views/footer.haml')).render

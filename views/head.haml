@@ -1,0 +1,14 @@
+%link{href: 'http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css', media: 'all', rel: 'stylesheet', type: 'text/css'}
+%script{src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js', type: 'text/javascript', charset: 'utf-8' }
+
+:javascript
+  $(function() {
+    $('#search-form').on('submit', function(e) {
+      e.preventDefault();
+      var $form = $(this);
+      var repo = $form.find('input').val();
+      if (repo.match(/.+\/.+/) ) {
+        window.location = '/gitten/' + repo;
+      }
+    });
+  });

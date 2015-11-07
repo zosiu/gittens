@@ -1,0 +1,18 @@
+%p
+  - ['newborn', 'kitten', 'teen', 'adult', 'senior'].each do |m|
+    %span{class: "label label-#{m == gitten[:maturity] ? 'primary' : 'default'}"}= m
+%p
+  - ['skinny', 'chubby', 'fat'].each do |m|
+    %span{class: "label label-#{m == gitten[:size] ? 'primary' : 'default'}"}= m
+%p
+  - ['black', 'bicolor', 'calico', 'tabby', 'nyan', 'amazing technicolor'].each do |m|
+    %span{class: "label label-#{m == gitten[:contributor_diversity] ? 'primary' : 'default'}"}= m
+%p
+  - ['full', 'satiated', 'hungry', 'very hungry', 'near starving', 'starving'].each do |m|
+    %span{class: "label label-#{m == gitten[:hunger] ? 'primary' : 'default'}"}= m
+%p
+  - ['hibernating', 'comatose', 'sleepy', 'calm', 'alert', 'playful', 'hyperactive'].each do |m|
+    %span{class: "label label-#{m == gitten[:activity] ? 'primary' : 'default'}"}= m
+%p
+  - ['slightly amused', 'amused', 'cheshire'].each do |m|
+    %span{class: "label label-#{m == gitten[:amusement] ? 'primary' : 'default'}"}= m
