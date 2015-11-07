@@ -7,8 +7,14 @@ Cuba.settings[:render][:template_engine] = 'haml'
 Cuba.define do
   on get do
     on 'random-gitten' do
-      repo = GITHUB.search_repos("forks:<=#{rand(100)}")[:items][rand(30)][:full_name]
-      res.redirect 'gitten/' + repo
+      begin
+        repo = GITHUB.search_repos("forks:<=#{rand(100)}")[:items][rand(30)][:full_name]
+        res.redirect 'gitten/' + repo
+      rescue => e
+        @error = e.message
+        @repo = repo
+        res.write partial('gittens')
+      end
     end
 
     on 'gitten/:owner/:repo' do |owner, repo|
