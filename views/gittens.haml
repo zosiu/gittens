@@ -13,7 +13,11 @@
       - if @error
         .alert.alert-danger
           %strong Oh snap! ٩(ↀДↀ)۶
-          Something unexpected happened... Maybe
+          Something unexpected happened...
+          (
+          = @error
+          if you really wanna know.)
+          Maybe
           %a.alert-link{href: "https://github.com/#{@repo}"}= @repo
           is not valid Github repository.
           Or maybe it was moved.
