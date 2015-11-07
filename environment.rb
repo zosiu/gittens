@@ -10,6 +10,8 @@ require 'dalli'
 require 'faraday-http-cache'
 require 'octokit'
 
+require_relative 'gittenizer'
+
 class Dalli::Client
   alias_method :write, :set
   alias_method :read, :get
