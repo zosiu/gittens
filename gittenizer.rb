@@ -42,12 +42,12 @@ class Gittenizer
 
   def gitten
     @gitten ||= { name: info[:full_name],
-                  maturity: maturity,
-                  activity: activity,
-                  size: size,
                   contributor_diversity: contributor_diversity,
+                  hunger: hunger,
                   amusement: amusement,
-                  hunger: hunger }
+                  size: size,
+                  activity: activity,
+                  maturity: maturity}
   end
 
   def sorted_apts
@@ -59,11 +59,49 @@ class Gittenizer
   end
 
   def to_ascii
-    '(=ↀωↀ=)'
+    case sorted_apts.first
+    when 'full' then '(=｀ェ´=)'
+    when 'satiated' then '(-ᄌ-)'
+    when 'hungry' then '(ㅇㅅㅇ❀)'
+    when 'very hungry' then '(^･o･^)ﾉ'
+    when 'starving' then '(,,◕　⋏　◕,,)'
+    when 'hibernating' then '(^--.--^  )__'
+    when 'comatose' then '(=⌒.⌒=)'
+    when 'sleepy' then '(.=^--ェ--^=)'
+    when 'calm' then '｡＾･ｪ･＾｡'
+    when 'alert' then '(͒ • ɪ •)'
+    when 'playful' then '( ^..^)ﾉ'
+    when 'hyperactive' then 'ヾ(=ﾟ･ﾟ=)ﾉ'
+    when 'newborn' then '(--ㅅ--)'
+    when 'kitten' then '^..^ﾉ'
+    when 'teen' then '=^._.^= ∫'
+    when 'adult' then '｡＾･ｪ･＾｡'
+    when 'senior' then '(≚ᄌ≚)'
+    when 'skinny' then '^--.--^__'
+    when 'chubby' then '@ ^^.'
+    when 'fat' then '(=^･.･^=  )'
+    when 'slightly amused' then '(=･ｪ･=)'
+    when 'amused' then '(=^ ◡ ^=)'
+    when 'cheshire' then '(=^​ω*^=)'
+    # when 'black'
+    # when 'bicolor'
+    # when 'tricolor'
+    # when 'tabby'
+    # when 'nyan'
+    # when 'amazing technicolor'
+    else '(=ↀωↀ=)'
+    end
   end
 
   def badge_color
-    'blue'
+    case gitten[:contributor_diversity]
+    when 'black' then '000000'
+    when 'bicolor' then 'lightgrey'
+    when 'tricolor' then 'yellow'
+    when 'tabby' then 'orange'
+    when 'nyan' then 'ff69b4'
+    else 'brightgreen'
+    end
   end
 
   def badge_url
