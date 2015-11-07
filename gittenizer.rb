@@ -120,9 +120,9 @@ class Gittenizer
   end
 
   def activity
+    return 'hibernating' if commit_activity_number.zero?
     case commit_activity_number
-    when 0 then 'hibernating'
-    when 1...10 then 'comatose'
+    when 0...10 then 'comatose'
     when 10...30 then 'sleepy'
     when 30...50 then 'calm'
     when 50...100 then 'alert'
@@ -153,7 +153,7 @@ class Gittenizer
   end
 
   def size
-    case info[:size] / 1000
+    case info[:size] / 1000.0
     when 0...40 then 'skinny'
     when 40...100 then 'chubby'
     else 'fat'
