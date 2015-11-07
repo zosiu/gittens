@@ -16,7 +16,7 @@
       %p= "[![Gittens](http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]})](http://gittens.r15.railsrumble.com/gitten/#{@gitten[:name]})"
       %hr
       %p
-        maturity:
+        age:
         - ['newborn', 'kitten', 'teen', 'adult', 'senior'].each do |m|
           %span{class: "label label-#{m == @gitten[:maturity] ? 'primary' : 'default'}"}= m
       %p
