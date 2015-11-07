@@ -4,10 +4,12 @@
 %html
   / <![endif]
   %head
+    %link{href: 'http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css', media: 'all', rel: 'stylesheet', type: 'text/css'}
     %meta{charset: 'UTF-8'}
       %meta{content: 'width=device-width', name: 'viewport'}
         %title Gittens
   %body
-    Let's Rumble!
-
-    %a{href: '/random-gitten'} Give me a random gitten!
+    .container
+      %h1 If your Github repo was a kitten...
+      %hr
+      %a{href: '/random-gitten', class: 'btn btn-primary'} Give me a random gitten!

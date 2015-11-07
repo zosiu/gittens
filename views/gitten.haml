@@ -4,9 +4,37 @@
 %html
   / <![endif]
   %head
+    %link{href: 'http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/yeti/bootstrap.min.css', media: 'all', rel: 'stylesheet', type: 'text/css'}
     %meta{charset: 'UTF-8'}
       %meta{content: 'width=device-width', name: 'viewport'}
         %title= "Gitten #{@gitten[:name]}"
   %body
-    %img{src: "/badge/#{@gitten[:name]}"}
-    %p= @gitten.inspect
+    .container
+      %h1= @gitten[:name]
+      %hr
+      %img{src: "/badge/#{@gitten[:name]}"}
+      %hr
+      %p
+        maturity:
+        - ['newborn', 'kitten', 'teen', 'adult', 'senior'].each do |m|
+          %span{class: "label label-#{m == @gitten[:maturity] ? 'primary' : 'default'}"}= m
+      %p
+        size:
+        - ['skinny', 'chubby', 'fat'].each do |m|
+          %span{class: "label label-#{m == @gitten[:size] ? 'primary' : 'default'}"}= m
+      %p
+        contributor diversity:
+        - ['default', 'bicolor', 'calico', 'tabby', 'nyan', 'amazing technicolor'].each do |m|
+          %span{class: "label label-#{m == @gitten[:contributor_diversity] ? 'primary' : 'default'}"}= m
+      %p
+        hunger:
+        - ['full', 'satiated', 'hungry', 'very hungry', 'near starving', 'starving'].each do |m|
+          %span{class: "label label-#{m == @gitten[:hunger] ? 'primary' : 'default'}"}= m
+      %p
+        activity:
+        - ['hibernating', 'comatose', 'sleepy', 'calm', 'alert', 'playful', 'hyperactive'].each do |m|
+          %span{class: "label label-#{m == @gitten[:activity] ? 'primary' : 'default'}"}= m
+      %p
+        amusement:
+        - ['slightly amuzed', 'amuzed', 'cheshire'].each do |m|
+          %span{class: "label label-#{m == @gitten[:amusement] ? 'primary' : 'default'}"}= m
