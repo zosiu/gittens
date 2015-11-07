@@ -10,7 +10,20 @@ class Gittenizer
     { maturity: maturity,
       contributor_diversity: contributor_diversity,
       size: size,
-      amusement: amusement }
+      amusement: amusement,
+      activity: activity }
+  end
+
+  def activity
+    case commit_activity_number
+    when 0 then 'hibernating'
+    when 1...10 then 'comatose'
+    when 10...30 then 'sleepy'
+    when 30...50 then 'calm'
+    when 50...100 then 'alert'
+    when 100...200 then 'playful'
+    else 'hyperactive'
+    end
   end
 
   def maturity
@@ -58,6 +71,20 @@ class Gittenizer
   end
 
   def contributor_count
-    @contributor_count ||= github.contributors(repo).count
+    @contributor_count ||= github.contributors(repo, true, per_page: 101).count
+  end
+
+  def participation_stats
+    @participation_stats ||= github.participation_stats(repo)[:all].reverse
+  end
+
+  def commit_activity_number
+    last_week = participation_stats[0]
+    last_month = participation_stats[0..4].inject(0, :+)
+    last_two_months = participation_stats[0..8].inject(0, :+)
+    last_three_months = participation_stats[0..12].inject(0, :+)
+    last_half_year = participation_stats[0..24].inject(0, :+)
+
+    (last_week + last_month / 2.0 + last_two_months / 4.0 + last_three_months / 8.0 + last_half_year / 16.0) * 10
   end
 end

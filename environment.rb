@@ -26,13 +26,13 @@ DALLI_CACHE = Dalli::Client.new((ENV['MEMCACHIER_SERVERS'] || '').split(','), DA
 
 OCTOKIT_STACK = Faraday::RackBuilder.new do |builder|
   # builder.response :logger
-  builder.use Faraday::HttpCache, store: DALLI_CACHE
+  builder.use Faraday::HttpCache, store: DALLI_CACHE, serializer: Marshal
   builder.use Octokit::Response::RaiseError
   builder.adapter Faraday.default_adapter
 end
 
 Octokit.middleware = OCTOKIT_STACK
-Octokit.auto_paginate = true
+# Octokit.auto_paginate = true
 
 GITHUB = Octokit::Client.new client_id: ENV['GITHUB_CLIENT_ID'],
                              client_secret: ENV['GITHUB_CLIENT_SECRET']
