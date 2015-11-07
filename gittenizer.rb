@@ -82,7 +82,7 @@ class Gittenizer
     when 'fat' then '(=^･.･^=  )'
     when 'slightly amused' then '(=･ｪ･=)'
     when 'amused' then '(=^ ◡ ^=)'
-    when 'cheshire' then '(=^​ω*^=)'
+    when 'cheshire' then '(=^​*ω*^=)'
     # when 'black'
     # when 'bicolor'
     # when 'tricolor'

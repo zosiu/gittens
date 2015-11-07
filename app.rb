@@ -38,7 +38,13 @@ Cuba.define do
     end
 
     on 'badge/:owner/:repo' do |owner, repo|
-      res.redirect Gittenizer.new("#{owner}/#{repo}", GITHUB).badge_url
+      begin
+        badge_url = Gittenizer.new("#{owner}/#{repo}", GITHUB).badge_url
+        res.redirect badge_url
+      rescue Octokit::Error => e
+        @error = e.message
+        res.redirect 'https://img.shields.io/badge/error,_please_refresh-' + CGI::escape('٩(ↀДↀ)۶') +  '-red.svg'
+      end
     end
 
     on 'ohai' do
