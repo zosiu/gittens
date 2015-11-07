@@ -183,7 +183,7 @@ class Gittenizer
       if diff > 0
         (open_issues / diff).ceil
       else
-        per = 0.999999 - closed_issues_last_period / open_issues_last_period.to_f
+        per = (0.999999 - closed_issues_last_period / open_issues_last_period.to_f).abs
         Math.log(0.02, per).ceil
       end
     end
