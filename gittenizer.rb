@@ -124,8 +124,8 @@ class Gittenizer
 
   def amusement
     case info[:stargazers_count] + info[:watchers_count] * 1.2
-      when 0...100 then 'slightly amused'
-      when 100...1000 then 'amused'
+      when 0...500 then 'slightly amused'
+      when 500...2000 then 'amused'
       else 'cheshire'
     end
   end
