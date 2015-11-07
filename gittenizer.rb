@@ -10,7 +10,7 @@ class Gittenizer
     case apt
     when 'full' then 0
     when 'satiated' then 0
-    when 'hungry' then 1
+    when 'hungry' then 3
     when 'very hungry' then 4
     when 'starving' then 4
     when 'hibernating' then 5
