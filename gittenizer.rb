@@ -12,7 +12,8 @@ class Gittenizer
                   contributor_diversity: contributor_diversity,
                   size: size,
                   amusement: amusement,
-                  activity: activity }
+                  activity: activity,
+                  hunger: hunger }
   end
 
   def summary
@@ -29,6 +30,17 @@ class Gittenizer
 
   def badge_url
     'https://img.shields.io/badge/' + CGI::escape("#{summary.gsub(/\s/, '_')}-#{to_ascii}-#{badge_color}.svg")
+  end
+
+  def hunger
+    case hunger_number
+    when 1..2 then 'full'
+    when 3..5 then 'satiated'
+    when 6..8 then 'hungry'
+    when 9..11 then 'very hungry'
+    when 12..14 then 'near starving'
+    else 'starving'
+    end
   end
 
   def activity
@@ -80,7 +92,24 @@ class Gittenizer
     end
   end
 
+  def open_issues_last_period
+    @open_issues_last_period ||= issue_count 'open', 42
+  end
+
+  def closed_issues_last_period
+    @closed_issues_last_period ||= issue_count 'closed', 42
+  end
+
+  def open_issues
+    info[:open_issues]
+  end
+
   private
+
+  def issue_count(is, days = 30)
+    q = "repo:#{info[:full_name]} is:#{is} created:>=#{Date.today - days}"
+    GITHUB.search_issues(q)[:total_count]
+  end
 
   def info
     # TODO: handle moved repos somehow
@@ -103,5 +132,21 @@ class Gittenizer
     last_half_year = participation_stats[0..24].inject(0, :+)
 
     (last_week + last_month / 2.0 + last_two_months / 4.0 + last_three_months / 8.0 + last_half_year / 16.0) * 10
+  end
+
+  def hunger_number
+    return 0 if open_issues.zero?
+
+    if open_issues_last_period.zero?
+      open_issues / closed_issues_last_period.to_f
+    else
+      diff = closed_issues_last_period - open_issues_last_period
+      if diff > 0
+        (open_issues / diff).ceil
+      else
+        per = 1 - closed_issues_last_period / open_issues_last_period.to_f
+        Math.log(0.02, per).ceil
+      end
+    end
   end
 end
