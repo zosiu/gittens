@@ -142,6 +142,15 @@ class Gittenizer
     info[:open_issues]
   end
 
+  def participation_stats
+    # hackish, but somehow sometimes it's nil who knows why...
+    until @participation_stats
+      @participation_stats ||= github.participation_stats(repo)
+    end
+
+    @participation_stats
+  end
+
   private
 
   def issue_count(is, days = 30)
@@ -162,13 +171,12 @@ class Gittenizer
   end
 
   def commit_activity_number
-    @participation_stats ||= github.participation_stats(repo)[:all].reverse
-
-    last_week = @participation_stats[0]
-    last_month = @participation_stats[0..4].inject(0, :+)
-    last_two_months = @participation_stats[0..8].inject(0, :+)
-    last_three_months = @participation_stats[0..12].inject(0, :+)
-    last_half_year = @participation_stats[0..24].inject(0, :+)
+    stats = participation_stats[:all].reverse
+    last_week = stats[0]
+    last_month = stats[0..4].inject(0, :+)
+    last_two_months = stats[0..8].inject(0, :+)
+    last_three_months = stats[0..12].inject(0, :+)
+    last_half_year = stats[0..24].inject(0, :+)
 
     (last_week + last_month / 4.0 + last_two_months / 8.0 + last_three_months / 16.0 + last_half_year / 32.0) * 10
   end
