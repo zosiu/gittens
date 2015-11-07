@@ -9,7 +9,8 @@ class Gittenizer
   def gitten
     { maturity: maturity,
       contributor_diversity: contributor_diversity,
-      size: size }
+      size: size,
+      amusement: amusement }
   end
 
   def maturity
@@ -38,6 +39,14 @@ class Gittenizer
     when 0...40 then 'skinny'
     when 40...100 then 'chubby'
     else 'fat'
+    end
+  end
+
+  def amusement
+    case info[:stargazers_count] + info[:watchers_count] * 1.2
+      when 0...100 then 'slightly amused'
+      when 100...1000 then 'amused'
+      else 'cheshire'
     end
   end
 
