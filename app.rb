@@ -12,7 +12,7 @@ Cuba.define do
         res.redirect 'gitten/' + repo
       rescue => e
         @error = e.message
-        @repo = repo
+        @repo = repo || 'undefined-random-repo'
         res.write partial('gittens')
       end
     end
