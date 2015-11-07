@@ -42,11 +42,11 @@ class Gittenizer
 
   def gitten
     @gitten ||= { name: info[:full_name],
+                  amusement: amusement,
+                  activity: activity,
                   contributor_diversity: contributor_diversity,
                   hunger: hunger,
-                  amusement: amusement,
                   size: size,
-                  activity: activity,
                   maturity: maturity}
   end
 
