@@ -1,10 +1,21 @@
 .alert.alert-danger
   %strong Oh snap! ٩(ↀДↀ)۶
   Something unexpected happened...
-  Maybe
-  %a.alert-link{href: "https://github.com/#{repo}"}= repo
-  is not valid Github repository.
-  Or maybe it was moved.
-  Or maybe it's private. Gittens love freedom, they can't live in a private environment.
-  Or maybe it's the Github API rate limit.
-  Please count to 4.2 and try refreshing the page (,,◕　⋏　◕,,)
+  - if error =~ /rate limit/i
+    Gittens is so popular that it reached the maximum Github rate limit for the time being.
+    Please count to 11 and try refreshing the page (,,◕　⋏　◕,,)
+  - else
+    - if error =~ /not found/i
+      It seems like
+      %a.alert-link{href: "https://github.com/#{repo}"}= repo
+      is not valid Github repository.
+      Or maybe it's private. Gittens love freedom, they can't live in a private environment.
+      Please try an another repo (,,◕　⋏　◕,,)
+    - else
+      Maybe
+      %a.alert-link{href: "https://github.com/#{repo}"}= repo
+      is not valid Github repository.
+      Or maybe it was moved.
+      Or maybe it's private. Gittens love freedom, they can't live in a private environment.
+      Or maybe it's the Github API rate limit.
+      You can try refreshing the page though (,,◕　⋏　◕,,)

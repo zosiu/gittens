@@ -12,7 +12,7 @@
   %body
     .container
       - if @error
-        = Haml::Engine.new(File.read('./views/error.haml')).render Object.new, repo: @repo
+        = Haml::Engine.new(File.read('./views/error.haml')).render Object.new, repo: @repo, error: @error
 
       %h1 If your Github repo was a kitten...
       %hr
@@ -20,15 +20,16 @@
         .col-md-8
           %p= Haml::Engine.new(File.read('./views/search_form.haml')).render
           %p= Haml::Engine.new(File.read('./views/random_gitten_button.haml')).render
-          %hr
-          %h1 Example Gitten
-          %h2= Haml::Engine.new(File.read('./views/gitten_github_link.haml')).render Object.new, gitten: @example
-          %hr
-          = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @example
-          %hr
-          .row
-            .col-md-4= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
-            .col-md-8= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @example
+          - unless @error
+            %hr
+            %h1 Example Gitten
+            %h2= Haml::Engine.new(File.read('./views/gitten_github_link.haml')).render Object.new, gitten: @example
+            %hr
+            = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @example
+            %hr
+            .row
+              .col-md-4= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
+              .col-md-8= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @example
         .col-md-4
           %h1 ABOUT
           %p

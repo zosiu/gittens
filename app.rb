@@ -19,10 +19,9 @@ Cuba.define do
       begin
         repo = GITHUB.search_repos("forks:<=#{rand(100)}")[:items][rand(30)][:full_name]
         res.redirect '/gitten/' + repo
-      rescue => e
+      rescue Octokit::Error => e
         @error = e.message
         @repo = repo || 'undefined-random-repo'
-        @example = example_gitten
         res.write partial('gittens')
       end
     end
@@ -31,10 +30,9 @@ Cuba.define do
       begin
         @gitten = Gittenizer.new("#{owner}/#{repo}", GITHUB).gitten
         res.write partial('gitten')
-      rescue => e
+      rescue Octokit::Error => e
         @error = e.message
         @repo = "#{owner}/#{repo}"
-        @example = example_gitten
         res.write partial('gittens')
       end
     end
