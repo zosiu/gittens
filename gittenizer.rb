@@ -97,7 +97,7 @@ class Gittenizer
     case gitten[:contributor_diversity]
     when 'black' then '000000'
     when 'bicolor' then 'lightgrey'
-    when 'tricolor' then 'yellow'
+    when 'calico' then 'yellow'
     when 'tabby' then 'orange'
     when 'nyan' then 'ff69b4'
     else 'brightgreen'
