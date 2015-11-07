@@ -10,7 +10,8 @@
         %title= "Gitten #{@gitten[:name]}"
   %body
     .container
-      %h1= @gitten[:name]
+      %h1
+        %a{href: "https://github.com/#{@gitten[:name]}", target: '_blank'}= @gitten[:name]
       %hr
       %img{src: "/badge/#{@gitten[:name]}"}
       %p= "[![Gittens](http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]})](http://gittens.r15.railsrumble.com/gitten/#{@gitten[:name]})"
