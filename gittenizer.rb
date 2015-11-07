@@ -6,6 +6,40 @@ class Gittenizer
     @github = github
   end
 
+  def priority(apt)
+    case apt
+    when 'full' then 0
+    when 'satiated' then 0
+    when 'hungry' then 1
+    when 'very hungry' then 4
+    when 'starving' then 4
+    when 'hibernating' then 5
+    when 'comatose' then 5
+    when 'sleepy' then 5
+    when 'calm' then 0
+    when 'alert' then 0
+    when 'playful' then 2
+    when 'hyperactive' then 2
+    when 'newborn' then 2
+    when 'kitten' then 1
+    when 'teen' then 0
+    when 'adult' then 0
+    when 'senior' then 2
+    when 'black' then 3
+    when 'bicolor' then 1
+    when 'tabby' then 0
+    when 'nyan' then 1
+    when 'amazing technicolor' then 3
+    when 'skinny' then 1
+    when 'chubby' then 0
+    when 'fat' then 2
+    when 'slightly amused' then 0
+    when 'amused' then 1
+    when 'cheshire' then 2
+    else 0
+    end
+  end
+
   def gitten
     @gitten ||= { name: info[:full_name],
                   maturity: maturity,
@@ -16,8 +50,12 @@ class Gittenizer
                   hunger: hunger }
   end
 
+  def sorted_apts
+    gitten.values.sort_by { |apt| priority(apt) }.reverse
+  end
+
   def summary
-    "#{activity}, #{contributor_diversity} gitten"
+    "#{sorted_apts.first(2).join(', ')} gitten"
   end
 
   def to_ascii
@@ -34,7 +72,7 @@ class Gittenizer
 
   def hunger
     case hunger_number
-    when 1..2 then 'full'
+    when 0..2 then 'full'
     when 3..5 then 'satiated'
     when 6..8 then 'hungry'
     when 9..11 then 'very hungry'
@@ -138,7 +176,7 @@ class Gittenizer
     return 0 if open_issues.zero?
 
     if open_issues_last_period.zero?
-      open_issues / closed_issues_last_period.to_f
+      open_issues > 3 ? open_issues / closed_issues_last_period.to_f : 6
     else
       diff = closed_issues_last_period - open_issues_last_period
       if diff > 0
