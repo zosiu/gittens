@@ -7,12 +7,28 @@ class Gittenizer
   end
 
   def gitten
-    { name: info[:full_name],
-      maturity: maturity,
-      contributor_diversity: contributor_diversity,
-      size: size,
-      amusement: amusement,
-      activity: activity }
+    @gitten ||= { name: info[:full_name],
+                  maturity: maturity,
+                  contributor_diversity: contributor_diversity,
+                  size: size,
+                  amusement: amusement,
+                  activity: activity }
+  end
+
+  def summary
+    "#{activity}, #{contributor_diversity} gitten"
+  end
+
+  def to_ascii
+    '(=ↀωↀ=)'
+  end
+
+  def badge_color
+    'blue'
+  end
+
+  def badge_url
+    'https://img.shields.io/badge/' + CGI::escape("#{summary.gsub(/\s/, '_')}-#{to_ascii}-#{badge_color}.svg")
   end
 
   def activity

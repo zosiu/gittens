@@ -8,4 +8,5 @@
       %meta{content: 'width=device-width', name: 'viewport'}
         %title= "Gitten #{@gitten[:name]}"
   %body
-    = @gitten.inspect
+    %img{src: "/badge/#{@gitten[:name]}"}
+    %p= @gitten.inspect

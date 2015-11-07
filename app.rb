@@ -11,6 +11,10 @@ Cuba.define do
       res.write partial('gitten')
     end
 
+    on 'badge/:owner/:repo' do |owner, repo|
+      res.redirect Gittenizer.new("#{owner}/#{repo}", GITHUB).badge_url
+    end
+
     on 'ohai' do
       @debug = Gittenizer.new('rails/rails', GITHUB).gitten
       res.write partial('gittens')
