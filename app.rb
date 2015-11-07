@@ -7,7 +7,7 @@ Cuba.settings[:render][:template_engine] = 'haml'
 Cuba.define do
   on get do
     on 'ohai' do
-      @debug = Gittenizer.new('rails/rails', GITHUB).info
+      @debug = Gittenizer.new('rails/rails', GITHUB).gitten
       res.write partial('gittens')
     end
 
