@@ -12,13 +12,15 @@
     .container
       - if @error
         .alert.alert-danger
-          %strong Oh snap!
-          Something unexpected happened. Maybe
+          %strong Oh snap! ٩(ↀДↀ)۶
+          Something unexpected happened... Maybe
           %a.alert-link{href: "https://github.com/#{@repo}"}= @repo
           is not valid Github repository.
-          Or it was moved.
-          Or it's private. Gittens love freedom, they can't live in a private environment.
+          Or maybe it was moved.
+          Or maybe it's private. Gittens love freedom, they can't live in a private environment.
+          Or maybe it's the Github API rate limit.
+          If you're confident, try refreshing the page (,,◕　⋏　◕,,)
 
       %h1 If your Github repo was a kitten...
       %hr
-      %a{href: '/random-gitten', class: 'btn btn-primary'} Give me a random gitten!
+      %a{href: 'random-gitten', class: 'btn btn-primary'} Give me a random gitten!

@@ -15,7 +15,7 @@ Cuba.define do
       begin
         @gitten = Gittenizer.new("#{owner}/#{repo}", GITHUB).gitten
         res.write partial('gitten')
-      rescue Exception => e
+      rescue => e
         @error = e.message
         @repo = "#{owner}/#{repo}"
         res.write partial('gittens')

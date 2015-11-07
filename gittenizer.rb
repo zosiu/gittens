@@ -55,7 +55,7 @@ class Gittenizer
   end
 
   def summary
-    "#{sorted_apts.first(2).join(', ')} gitten"
+    "#{sorted_apts.first(2).join(' ')} gitten"
   end
 
   def to_ascii
