@@ -1,0 +1,6 @@
+{
+  "name": "gittens",
+  "description": "If your github repo was a kitten...",
+  "repository": "https://github.com/railsrumble/r15-team-4",
+  "keywords": ["github", "kittens"],
+}
