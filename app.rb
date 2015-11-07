@@ -4,6 +4,15 @@ Cuba.plugin(Cuba::Render)
 
 Cuba.settings[:render][:template_engine] = 'haml'
 
+module ExampleRepoHelper
+  def example_gitten
+    example_repo = ['thoughtbot/paperclip', 'refile/refile', 'carrierwaveuploader/carrierwave'].sample
+    @example_gitten ||= Gittenizer.new(example_repo, GITHUB).gitten
+  end
+end
+
+Cuba.plugin ExampleRepoHelper
+
 Cuba.define do
   on get do
     on 'random-gitten' do
@@ -24,6 +33,7 @@ Cuba.define do
       rescue => e
         @error = e.message
         @repo = "#{owner}/#{repo}"
+        @example = example_gitten
         res.write partial('gittens')
       end
     end
@@ -33,8 +43,7 @@ Cuba.define do
     end
 
     on 'ohai' do
-      example_repo = ['thoughtbot/paperclip', 'refile/refile', 'carrierwaveuploader/carrierwave'].sample
-      @example_gitten = Gittenizer.new(example_repo, GITHUB).gitten
+      @example = example_gitten
       res.write partial('gittens')
     end
 
