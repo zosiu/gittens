@@ -10,6 +10,13 @@
         %title Gittens
   %body
     .container
+      - if @error
+        .alert.alert-danger
+          %strong Oh snap!
+          Something unexpected happened. Maybe
+          %a.alert-link{href: "https://github.com/#{@repo}"}= @repo
+          is not valid Github repository. Or maybe it is, but it's private. Gittens like freedom, they can't live in a private environment.
+
       %h1 If your Github repo was a kitten...
       %hr
       %a{href: '/random-gitten', class: 'btn btn-primary'} Give me a random gitten!

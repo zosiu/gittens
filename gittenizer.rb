@@ -152,6 +152,9 @@ class Gittenizer
   def info
     # TODO: handle moved repos somehow
     @info ||= github.repository repo
+    fail 'Not a valid repository' unless @info[:full_name]
+
+    @info
   end
 
   def contributor_count
