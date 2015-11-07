@@ -7,7 +7,8 @@ class Gittenizer
   end
 
   def gitten
-    { maturity: maturity,
+    { name: info[:full_name],
+      maturity: maturity,
       contributor_diversity: contributor_diversity,
       size: size,
       amusement: amusement,
