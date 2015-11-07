@@ -10,11 +10,10 @@
         %title= "Gitten #{@gitten[:name]}"
 
   %body
-    .container{style: 'margin-top:55px;'}
+    .container
       %h1= Haml::Engine.new(File.read('./views/gitten_github_link.haml')).render Object.new, gitten: @gitten
       %hr
       = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @gitten
-      -# %p= "[![Gittens](http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]})](http://gittens.r15.railsrumble.com/gitten/#{@gitten[:name]})"
       %hr
       .row
         .col-xs-2= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
@@ -23,6 +22,8 @@
           %p= Haml::Engine.new(File.read('./views/search_form.haml')).render
           %p= Haml::Engine.new(File.read('./views/random_gitten_button.haml')).render
       %hr
+
+    .container{style: 'margin-bottom:55px;'}
       %h2 Badge url
       %pre
         %code= "http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]}"
