@@ -1,5 +1,5 @@
 class Gittenizer
-  attr_reader :repo, :github, :info
+  attr_reader :repo, :github
 
   def initialize(repo, github)
     @repo = repo
@@ -7,7 +7,8 @@ class Gittenizer
   end
 
   def gitten
-    { maturity: maturity }
+    { maturity: maturity,
+      contributor_diversity: contributor_diversity }
   end
 
   def maturity
@@ -20,10 +21,25 @@ class Gittenizer
     end
   end
 
+  def contributor_diversity
+    case contributor_count
+    when 1 then 'black'
+    when 2 then 'bicolor'
+    when 3 then 'calico'
+    when 4...50 then 'tabby'
+    when 50...100 then 'nyan'
+    else 'amazing technicolor'
+    end
+  end
+
   private
 
   def info
     # TODO: handle moved repos somehow
     @info ||= github.repository repo
+  end
+
+  def contributor_count
+    @contributor_count ||= github.contributors(repo).count
   end
 end
