@@ -35,8 +35,10 @@
           %h3 ABOUT
           = Haml::Engine.new(File.read('./views/about.haml')).render
 
-        %hr{style: "border-color: white;"}
-        .text-center
-          %a{href: 'https://railsrumble.com/entries/4-gittens', target: '_blank'} Rails Rumble 2015
+        -# %hr{style: "border-color: white;"}
+        -# .text-center
+        -#   %a{href: 'https://railsrumble.com/entries/4-gittens', target: '_blank'} Rails Rumble 2015
 
       -# = Haml::Engine.new(File.read('./views/footer.haml')).render
+
+  = Haml::Engine.new(File.read('./views/rumble_banner.haml')).render
