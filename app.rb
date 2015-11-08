@@ -50,6 +50,8 @@ Cuba.define do
         res['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
         res['Pragma'] = 'no-cache'
         res['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        res['ETag'] = badge_url
+
         res.redirect badge_url
       rescue Octokit::Error => e
         @error = e.message
