@@ -52,7 +52,12 @@ Cuba.define do
     end
 
     on 'ohai' do
-      @example = example_gitten
+      begin
+        @example = example_gitten
+      rescue Octokit::Error => e
+        @error = e.message
+        @repo = 'refile/refile'
+      end
       res.write partial('gittens')
     end
 
