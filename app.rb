@@ -15,6 +15,10 @@ Cuba.plugin ExampleRepoHelper
 
 Cuba.define do
   on get do
+    on param('screenshot') do
+      res.write partial('screenshot')
+    end
+
     on 'random-gitten' do
       begin
         repo = GITHUB.search_repos("forks:<=#{rand(100)}")[:items][rand(30)][:full_name]
