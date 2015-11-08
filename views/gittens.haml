@@ -18,7 +18,7 @@
       %h3 ...if your Github repo was a kitten...
       %hr
       .row
-        .col-md-8
+        .col-md-7
           %p= Haml::Engine.new(File.read('./views/search_form.haml')).render
           %p= Haml::Engine.new(File.read('./views/random_gitten_button.haml')).render
           - unless @error
@@ -31,12 +31,10 @@
             .row
               .col-xs-4= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
               .col-xs-8= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @example
-        .col-md-4
-          %h1 ABOUT
-          %p
-            Mauris ut risus sed nisl sollicitudin varius vel non erat. Phasellus quis nibh urna. Fusce malesuada vestibulum convallis. Fusce hendrerit mollis pretium. Etiam rhoncus erat et ultricies ultricies. Nam ornare vulputate placerat. Aenean sem neque, vehicula sed orci sed, maximus aliquam velit. Vestibulum et nunc nisi. Ut sit amet sollicitudin tellus. Nullam accumsan leo urna, eget iaculis turpis lacinia sit amet. In molestie, justo ut fringilla pellentesque, lectus neque volutpat purus, id placerat est nulla non urna. Etiam lectus dui, feugiat ut tempus et, lacinia vitae ex. Cras dignissim viverra condimentum. Morbi bibendum finibus enim. Cras lobortis sem ut urna tristique, a eleifend felis malesuada.
-          %p
-            Mauris ut risus sed nisl sollicitudin varius vel non erat. Phasellus quis nibh urna. Fusce malesuada vestibulum convallis. Fusce hendrerit mollis pretium. Etiam rhoncus erat et ultricies ultricies. Nam ornare vulputate placerat. Aenean sem neque, vehicula sed orci sed, maximus aliquam velit. Vestibulum et nunc nisi. Ut sit amet sollicitudin tellus. Nullam accumsan leo urna, eget iaculis turpis lacinia sit amet. In molestie, justo ut fringilla pellentesque, lectus neque volutpat purus, id placerat est nulla non urna. Etiam lectus dui, feugiat ut tempus et, lacinia vitae ex. Cras dignissim viverra condimentum. Morbi bibendum finibus enim. Cras lobortis sem ut urna tristique, a eleifend felis malesuada.
+        .col-md-5
+          %h3 ABOUT
+          = Haml::Engine.new(File.read('./views/about.haml')).render
+
         %hr{style: "border-color: white;"}
         .text-center
           %a{href: 'https://railsrumble.com/entries/4-gittens', target: '_blank'} Rails Rumble 2015
