@@ -16,7 +16,7 @@
       if (repo.match(/.+\/.+/) ) {
         group.removeClass('has-error');
         group.addClass('has-success');
-        window.location = '/gitten/' + repo.replace(/\s/g, '');
+        window.location = '/gitten/' + repo.replace(/https?:\/\/github\.com\//, '').replace(/\s/g, '');
       } else {
         group.addClass('has-error');
       }
