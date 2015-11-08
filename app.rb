@@ -4,6 +4,8 @@ Cuba.plugin(Cuba::Render)
 
 Cuba.settings[:render][:template_engine] = 'haml'
 
+# Cuba.use Rack::Etag
+
 module ExampleRepoHelper
   def example_gitten
     example_repo = ['thoughtbot/paperclip', 'refile/refile', 'carrierwaveuploader/carrierwave'].sample
@@ -44,6 +46,10 @@ Cuba.define do
     on 'badge/:owner/:repo' do |owner, repo|
       begin
         badge_url = Gittenizer.new("#{owner}/#{repo}", GITHUB).badge_url
+        res['Date'] = DateTime.now.to_time.utc.rfc2822.sub( /.....$/, 'GMT')
+        res['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
+        res['Pragma'] = 'no-cache'
+        res['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         res.redirect badge_url
       rescue Octokit::Error => e
         @error = e.message
