@@ -29,8 +29,8 @@
             = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @example
             %hr
             .row
-              .col-xs-4= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
-              .col-xs-8= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @example
+              .col-xs-3= Haml::Engine.new(File.read('./views/gitten_headers.haml')).render
+              .col-xs-9= Haml::Engine.new(File.read('./views/gitten_attrs.haml')).render Object.new, gitten: @example
         .col-md-5
           %h3 ABOUT
           = Haml::Engine.new(File.read('./views/about.haml')).render
