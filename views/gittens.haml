@@ -10,11 +10,12 @@
         %title Gittens
 
   %body
-    .container{style: 'margin-bottom:55px;'}
+    .container.panel{style: "margin-top: 4em; margin-bottom: 4em; border-radius: 1.5em;"}
       - if @error
         = Haml::Engine.new(File.read('./views/error.haml')).render Object.new, repo: @repo, error: @error
 
-      %h1 If your Github repo was a kitten...
+      %h1 Gittens
+      %h3 ...if your Github repo was a kitten...
       %hr
       .row
         .col-md-8
@@ -36,5 +37,6 @@
             Mauris ut risus sed nisl sollicitudin varius vel non erat. Phasellus quis nibh urna. Fusce malesuada vestibulum convallis. Fusce hendrerit mollis pretium. Etiam rhoncus erat et ultricies ultricies. Nam ornare vulputate placerat. Aenean sem neque, vehicula sed orci sed, maximus aliquam velit. Vestibulum et nunc nisi. Ut sit amet sollicitudin tellus. Nullam accumsan leo urna, eget iaculis turpis lacinia sit amet. In molestie, justo ut fringilla pellentesque, lectus neque volutpat purus, id placerat est nulla non urna. Etiam lectus dui, feugiat ut tempus et, lacinia vitae ex. Cras dignissim viverra condimentum. Morbi bibendum finibus enim. Cras lobortis sem ut urna tristique, a eleifend felis malesuada.
           %p
             Mauris ut risus sed nisl sollicitudin varius vel non erat. Phasellus quis nibh urna. Fusce malesuada vestibulum convallis. Fusce hendrerit mollis pretium. Etiam rhoncus erat et ultricies ultricies. Nam ornare vulputate placerat. Aenean sem neque, vehicula sed orci sed, maximus aliquam velit. Vestibulum et nunc nisi. Ut sit amet sollicitudin tellus. Nullam accumsan leo urna, eget iaculis turpis lacinia sit amet. In molestie, justo ut fringilla pellentesque, lectus neque volutpat purus, id placerat est nulla non urna. Etiam lectus dui, feugiat ut tempus et, lacinia vitae ex. Cras dignissim viverra condimentum. Morbi bibendum finibus enim. Cras lobortis sem ut urna tristique, a eleifend felis malesuada.
+          %hr
 
-      = Haml::Engine.new(File.read('./views/footer.haml')).render
+      -# = Haml::Engine.new(File.read('./views/footer.haml')).render

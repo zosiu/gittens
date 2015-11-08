@@ -10,7 +10,7 @@
         %title= "Gitten #{@gitten[:name]}"
 
   %body
-    .container
+    .container.panel{style: "margin-top: 7em; margin-bottom: 7em; border-radius: 1.5em;"}
       %h1= Haml::Engine.new(File.read('./views/gitten_github_link.haml')).render Object.new, gitten: @gitten
       %hr
       = Haml::Engine.new(File.read('./views/gitten_badge.haml')).render Object.new, gitten: @gitten
@@ -22,10 +22,9 @@
           %p= Haml::Engine.new(File.read('./views/search_form.haml')).render
           %p= Haml::Engine.new(File.read('./views/random_gitten_button.haml')).render
       %hr
-
-    .container{style: 'margin-bottom:55px;'}
       %h2 Badge url
       %pre
         %code= "http://gittens.r15.railsrumble.com//badge/#{@gitten[:name]}"
+      %hr
 
-    = Haml::Engine.new(File.read('./views/footer.haml')).render
+    -# = Haml::Engine.new(File.read('./views/footer.haml')).render
