@@ -10,7 +10,7 @@
         %title Gittens
 
   %body
-    .container.panel{style: "margin-top: 4em; margin-bottom: 4em; border-radius: 1.5em;"}
+    .container.panel{style: "margin-top: 3em; margin-bottom: 3em; border-radius: 1.5em;"}
       - if @error
         = Haml::Engine.new(File.read('./views/error.haml')).render Object.new, repo: @repo, error: @error
 
