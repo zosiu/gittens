@@ -1,4 +1,4 @@
-[![Gittens](https://polar-reef-8027.herokuapp.com/badge/railsrumble/r15-team-4)](http://gittens.r15.railsrumble.com/gitten/railsrumble/r15-team-4)
+[![Gittens](https://polar-reef-8027.herokuapp.com/badge/tomb0y/gittens)](http://gittens.r15.railsrumble.com/gitten/tomb0y/gittens)
 
 ---
 
