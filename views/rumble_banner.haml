@@ -4,4 +4,71 @@
   rumbleBannerTextColor = "#b0b0b0";
   rumbleBannerLinkColor = "#ffffff";
   rumbleBannerPlacement = "bottom"; // Optionally replace with "bottom".
-%script{src: 'https://d4nnn7wspfa3h.cloudfront.net/banner-2015.js', type: 'text/javascript'}
+
+:javascript
+  (function() {
+    this.RumbleBanner = {
+      create: function(options) {
+        this.backgroundColor = options.backgroundColor || "#161616";
+        this.textColor = options.textColor || "#b0b0b0";
+        this.linkColor = options.linkColor || "#ffffff";
+        this.placement = options.placement || "top";
+        this.buildBanner();
+        this.createCloseButton();
+        this.styleBanner();
+        return this.attachToPage();
+      },
+      attachToPage: function() {
+        var _this = this;
+        this.body = document.getElementsByTagName("body")[0];
+        this.bindEvent(this.button, "click", function(e) {
+          return _this.body.removeChild(_this.banner);
+        });
+        this.banner.appendChild(this.button);
+        return this.body.appendChild(this.banner);
+      },
+      buildBanner: function() {
+        this.banner = document.createElement("div");
+        this.banner.id = "rumble2015";
+        this.text = document.createElement("span");
+        this.banner.appendChild(this.text);
+        return this.text.innerHTML = "<img height=\"75px\" src=\"http://img3.wikia.nocookie.net/__cb20130825170043/im-pusheen-the-cat/images/a/a6/Thank_you.gif\"></img> for all your support in the <a href=\"http://railsrumble.com/\">2015 Rails Rumble</a>! Gittens placed 5th and won the Best Solo award <3";
+      },
+      styleBanner: function() {
+        var link, _i, _len, _ref;
+        if(this.placement == 'bottom') {
+          this.banner.style.cssText = "position: fixed;\ndisplay: block;\nwidth: 100%;\nz-index: 99999;\nbottom: 0;\nleft: 0;\npadding: 10px 0 10px 0;\ntext-align: center;\nbackground-color: " + this.backgroundColor + ";\nmargin: 0;\ncolor: " + this.textColor + ";";
+        } else {
+          this.banner.style.cssText = "position: fixed;\ndisplay: block;\nwidth: 100%;\nz-index: 99999;\ntop: 0;\nleft: 0;\npadding: 10px 0 10px 0;\ntext-align: center;\nbackground-color: " + this.backgroundColor + ";\nmargin: 0;\ncolor: " + this.textColor + ";";
+        }
+        _ref = this.text.getElementsByTagName("a");
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          link = _ref[_i];
+          link.style.cssText = "color: " + this.linkColor + ";\nfont-weight: bolder;\ntext-decoration: none;";
+        }
+        return this.button.style.cssText = "position: absolute;\nright: 8px ;\ncursor: pointer;\ntop: 8px;";
+      },
+      createCloseButton: function() {
+        this.button = document.createElement("span");
+        this.button.id = "rumbleCloseButton";
+        return this.button.innerHTML = "x";
+      },
+      bindEvent: function(elem, evt, cb) {
+        if (elem.addEventListener) {
+          return elem.addEventListener(evt, cb, false);
+        } else if (elem.attachEvent) {
+          return elem.attachEvent('on' + evt, function() {
+            return cb.call(event.srcElement, event);
+          });
+        }
+      }
+    };
+
+    this.RumbleBanner.create({
+      backgroundColor: ((window.rumbleBannerBackgroundColor != undefined) ? window.rumbleBannerBackgroundColor : null),
+      textColor: ((window.rumbleBannerTextColor != undefined) ? window.rumbleBannerTextColor : null),
+      linkColor: ((window.rumbleBannerLinkColor != undefined) ? window.rumbleBannerLinkColor : null),
+      placement: ((window.rumbleBannerPlacement != undefined) ? window.rumbleBannerPlacement : 'top')
+    });
+
+  }).call(this);
